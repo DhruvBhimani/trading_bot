@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: solana_quant_db
+    environment:
+      POSTGRES_DB: solana_quant
+      POSTGRES_USER: solana_quant
+      POSTGRES_PASSWORD: change_me
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schemas:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  postgres_data:

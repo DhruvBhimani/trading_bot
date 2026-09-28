@@ -1,0 +1,46 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Java / Gradle
+backend/.gradle/
+backend/build/
+backend/out/
+*.class
+*.jar
+!backend/gradle/wrapper/gradle-wrapper.jar
+
+# Python
+research/.venv/
+research/output/
+research/__pycache__/
+research/**/__pycache__/
+research/*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Data (keep structure, not large downloads)
+data/raw/**
+data/processed/**
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# Logs
+*.log
