@@ -13,7 +13,36 @@ spring:
       hibernate:
         jdbc:
           time_zone: UTC
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: ${SERVER_PORT:8080}
 
 logging:
   level:
     root: INFO
+    com.solanaquant: DEBUG
+
+solana-quant:
+  data-dir: ${DATA_DIR:../data}
+  execution:
+    live-enabled: false
+  bootstrap-sample-data: ${BOOTSTRAP_SAMPLE_DATA:false}
+  strategy:
+    min-liquidity-usd: 25000
+    min-safety-score: 70
+    min-drawdown-pct: 30
+    min-recovery-pct: 5
+    stop-loss-pct: 25
+    take-profit-pct: 100
+    max-hold-minutes: 360
+    min-smart-wallet-buys: 2
+    smart-wallet-min-score: 60
+    smart-wallet-lookback-minutes: 120
+  paper:
+    account-name: default
+    starting-balance-usd: 10000
+    position-size-usd: 150
+    tick-interval-seconds: 0

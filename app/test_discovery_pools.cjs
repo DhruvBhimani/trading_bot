@@ -1,0 +1,36 @@
+const assert=require('node:assert/strict');
+const {events}=require('./discovery_decode.cjs'),{DiscoverySession}=require('./discovery_session.cjs'),{PoolResolver,poolIdentity}=require('./discovery_pools.cjs');
+const fixture=require('./fixtures/pumpswap-observed-sell.json');
+const SOL='So11111111111111111111111111111111111111112';
+async function run(){
+ const decoded=events(fixture.logs);assert.equal(decoded.length,1);assert.equal(decoded[0].kind,'pool_trade');assert.equal(decoded[0].pool,fixture.pool);
+ assert.equal(poolIdentity(fixture.pool,fixture.account).canonical_migration,true);
+ assert.equal(poolIdentity(SOL,fixture.account).canonical_migration,false);
+ const altered=Buffer.from(fixture.account.data[0],'base64');altered[11]^=1;
+ assert.equal(poolIdentity(fixture.pool,{...fixture.account,data:[altered.toString('base64'),'base64']}).canonical_migration,false);
+ const trade={...decoded[0],signature:fixture.signature,slot:fixture.slot,received:1000};
+ const session=new DiscoverySession(),output=[];
+ assert.equal(session.event(trade),null);
+ const resolver=new PoolResolver(async()=>({value:[fixture.account]}),session,e=>{const mapped=session.event(e);if(mapped)output.push(mapped);});
+ resolver.add(trade);await resolver.tick();
+ assert.equal(output.length,2);assert.equal(output[0].base_mint,fixture.mint);assert.equal(output[1].kind,'trade');assert.equal(output[1].mint,fixture.mint);assert.equal(output[1].quote_mint,SOL);assert.equal(output[1].is_buy,false);assert.equal(output[1].sol_amount,'1836567');assert.equal(output[1].received,1000);
+ session.event({kind:'migration',mint:fixture.mint,pool:fixture.pool,quote_mint:'11111111111111111111111111111111'});
+ assert.equal(session.event(trade).kind,'trade');assert.equal(session.pools.get(fixture.pool).quote_mint,SOL);
+ assert.equal(poolIdentity(fixture.pool,{...fixture.account,owner:'fake'}),null);
+ assert.equal(poolIdentity(fixture.pool,{...fixture.account,executable:true}),null);
+ assert.equal(poolIdentity(fixture.pool,{...fixture.account,data:[Buffer.alloc(243).toString('base64'),'base64']}),null);
+ const lateSession=new DiscoverySession(),late=[];
+ const stale=new PoolResolver(async()=>{lateSession.command({type:'reset',generation:1,mints:[]});return {value:[fixture.account]};},lateSession,e=>late.push(e));
+ stale.add(trade);await stale.tick();assert.equal(late.length,0);
+ const fail=new PoolResolver(async()=>{throw Error('429');},session,()=>assert.fail('No invented pool'));
+ for(let i=0;i<200;i++)fail.add({...trade,pool:'pool'+i});assert.equal(fail.pending.size,100);
+ for(let i=0;i<20;i++)fail.add({...trade,pool:'pool199'});assert.equal(fail.pending.get('pool199').events.length,8);
+ await fail.tick();assert(fail.status.includes('unavailable'));assert(fail.pending.size<=100);
+ const prioritySession=new DiscoverySession();let requested;
+ const priority=new PoolResolver(async(method,params)=>{requested=params[0];return {value:params[0].map(()=>null)};},prioritySession,()=>{});
+ for(let i=0;i<60;i++)priority.add({...trade,pool:'priority'+i,received:1000+i});
+ for(let i=0;i<10;i++)priority.add({...trade,pool:'priority0',received:1100+i});
+ await priority.tick();assert.equal(requested[0],'priority0');assert.equal(requested.length,20);
+ console.log('Real-chain swap fixture, verified pool mapping, migration preservation, stale reset, failure backoff and RAM bounds passed.');
+}
+run().catch(e=>{console.error(e);process.exitCode=1;});

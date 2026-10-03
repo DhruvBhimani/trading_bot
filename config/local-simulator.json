@@ -1,0 +1,11 @@
+{
+  "starting_cash": 10000,
+  "allocation": 0.02,
+  "fee_bps": 30,
+  "slippage_bps": 50,
+  "pullback": 0.30,
+  "recovery": 0.05,
+  "stop_loss": 0.25,
+  "take_profit": 0.50,
+  "max_hold_bars": 8
+}

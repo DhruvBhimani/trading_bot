@@ -1,0 +1,45 @@
+{
+  "mint": "DQ2XhGDN9Mbw3KgqixGenhr7edwyhS99V5RSEHkRpump",
+  "slot": 452366205,
+  "account": {
+    "data": {
+      "parsed": {
+        "info": {
+          "decimals": 6,
+          "extensions": [
+            {
+              "extension": "metadataPointer",
+              "state": {
+                "authority": null,
+                "metadataAddress": "DQ2XhGDN9Mbw3KgqixGenhr7edwyhS99V5RSEHkRpump"
+              }
+            },
+            {
+              "extension": "tokenMetadata",
+              "state": {
+                "additionalMetadata": [],
+                "mint": "DQ2XhGDN9Mbw3KgqixGenhr7edwyhS99V5RSEHkRpump",
+                "name": "Super Accelerationism",
+                "symbol": "s/acc",
+                "updateAuthority": null,
+                "uri": "https://ipfs.io/ipfs/bafkreie4itatnszybiytmyeiebnnc2qxswinub56z5kwurcrzigx3s6l5i"
+              }
+            }
+          ],
+          "freezeAuthority": null,
+          "isInitialized": true,
+          "mintAuthority": null,
+          "supply": "983689477206370"
+        },
+        "type": "mint"
+      },
+      "program": "spl-token-2022",
+      "space": 424
+    },
+    "executable": false,
+    "lamports": 2804160,
+    "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "rentEpoch": 18446744073709551615,
+    "space": 424
+  }
+}

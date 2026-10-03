@@ -1,0 +1,11 @@
+{
+  "version": "2026-09-30-user-hypotheses-v1",
+  "mode": "research_only",
+  "priority": ["verified_post_migration_recovery", "pre_migration_timing", "early_launch_baseline"],
+  "hypotheses": ["valuation_vs_observed_fees", "low_sol_holder_fraction", "coordinated_bundled_buying", "funding_and_transfer_clusters"],
+  "candidate_holder_sol_thresholds": [0.02, 0.03],
+  "automatic_model_promotion": false,
+  "require_time_ordered_validation": true,
+  "require_missing_data_indicators": true,
+  "notes": "Hypotheses, not validated rug labels. See docs/strategy-direction.md."
+}

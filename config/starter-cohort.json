@@ -1,0 +1,11 @@
+{
+  "name": "starter-five-v1",
+  "selection": "Retrospectively selected engineering cases, not an unbiased investment universe. Labels must not be used by strategy signals.",
+  "cases": [
+    {"symbol":"BONK","group":"historical_runner","token":"DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263","pool":"5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9","event_start":"2024-03-01T00:00:00Z","event_end":"2024-04-01T00:00:00Z","evidence":["https://assets.coingecko.com/reports/2024/CoinGecko-2024-Q1-Report.pdf","https://www.coingecko.com/en/coins/bonk"]},
+    {"symbol":"WIF","group":"historical_runner","token":"EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm","pool":"EP2ib6dYdEeqD8MfE2ezHCxX3kP3K2eLKkirfPm5eyMx","event_start":"2024-03-01T00:00:00Z","event_end":"2024-04-01T00:00:00Z","evidence":["https://assets.coingecko.com/reports/2024/CoinGecko-2024-Q1-Report.pdf","https://solanacompass.com/projects/dogwifhat"]},
+    {"symbol":"POPCAT","group":"historical_runner","token":"7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr","pool":"FRhB8L7Y9Qq41qZXYLtC2nw8An1RJfLLxRF2x9RwLLMo","event_start":"2024-03-01T00:00:00Z","event_end":"2024-04-01T00:00:00Z","evidence":["https://assets.coingecko.com/reports/2024/CoinGecko-2024-Q1-Report.pdf","https://www.coingecko.com/en/coins/popcat"]},
+    {"symbol":"SHAR","group":"documented_rug_case","token":"9jZgvgS2bWtQiYzv48GcWzY4tnkeRSANbTm8Kp1LmSyS","pool":"3Zm5BnJvK5xpJ2CKdqajq1HbQSLwz6F3jzSMn5YZeK1C","event_start":"2024-10-23T00:00:00Z","event_end":"2024-10-25T00:00:00Z","evidence":["https://metasleuth.io/blog/pump-dump-shar-MetaSleuth","https://solscan.io/token/9jZgvgS2bWtQiYzv48GcWzY4tnkeRSANbTm8Kp1LmSyS"]},
+    {"symbol":"LIBRA","group":"alleged_rug_liquidity_withdrawal_case","token":"Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU","pool":"CeubWwtcmVctX47UWLmVZJ9zENtC5tdBecfE6sb4gU7k","event_start":"2025-02-14T00:00:00Z","event_end":"2025-02-17T00:00:00Z","evidence":["https://www.investing.com/news/economy-news/crypto-worth-99-million-withdrawn-from-mileibacked-libra-token-researchers-say-3878944","https://ascendex.com/en/support/articles/122820-libra-libra"]}
+  ]
+}

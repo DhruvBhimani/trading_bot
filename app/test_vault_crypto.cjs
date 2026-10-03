@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),{act}=require('./vault_crypto.cjs');
+const {Keypair,TransactionMessage,VersionedTransaction,SystemProgram}=require('@solana/web3.js');
+const password='ephemeral-test-passphrase',r=act({action:'create',password});
+assert.equal(act({action:'unlock',...r,password}).address,r.address);
+assert.throws(()=>act({action:'unlock',...r,password:'wrong-passphrase'}));
+const exported=act({action:'export',...r,password}).secret;
+assert.equal(act({action:'create',password,secret:exported}).address,r.address);
+const {PublicKey}=require('@solana/web3.js');const from=new PublicKey(r.address);
+const tx=new VersionedTransaction(new TransactionMessage({payerKey:from,recentBlockhash:Keypair.generate().publicKey.toBase58(),instructions:[SystemProgram.transfer({fromPubkey:from,toPubkey:Keypair.generate().publicKey,lamports:1})]}).compileToV0Message());
+assert.ok(act({action:'sign',...r,password,transaction:Buffer.from(tx.serialize()).toString('base64')}).signed);
+assert.throws(()=>act({action:'sign',...r,address:Keypair.generate().publicKey.toBase58(),password,transaction:Buffer.from(tx.serialize()).toString('base64')}));
+const tampered={...r,vault:{...r.vault,tag:Buffer.alloc(16).toString('base64')}};assert.throws(()=>act({action:'unlock',...tampered,password}));
+console.log('7 vault encryption/import/signing checks passed; ephemeral keys only.');

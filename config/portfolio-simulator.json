@@ -1,0 +1,16 @@
+{
+  "starting_cash": 10000,
+  "position_budget": 200,
+  "max_positions": 3,
+  "fee_bps": 30,
+  "slippage_bps": 50,
+  "max_liquidity_fraction": 0.01,
+  "min_liquidity": 10000,
+  "pullback": 0.3,
+  "recovery": 0.05,
+  "stop_loss": 0.25,
+  "take_profit": 0.5,
+  "max_hold_seconds": 7200,
+  "max_data_age_seconds": 120,
+  "order_ttl_seconds": 1800
+}

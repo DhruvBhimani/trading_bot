@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@neon/config": "^1.8.2",
+    "@neon/env": "^1.4.7",
+    "@solana/web3.js": "^1.99.0",
+    "bs58": "^4.0.1",
+    "ws": "^7.5.13",
+    "@noble/curves": "^1.9.7"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.10"
+  },
+  "scripts": {
+    "build:wallet": "esbuild frontend/wallet-entry.js --bundle --minify --platform=browser --outfile=frontend/wallet-bundle.js",
+    "test:wallet": "node app/test_wallet_guard.cjs"
+  }
+}

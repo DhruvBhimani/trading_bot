@@ -18,6 +18,7 @@ backend/out/
 
 # Python
 research/.venv/
+research/.venv-ml/
 research/output/
 research/__pycache__/
 research/**/__pycache__/
@@ -44,3 +45,12 @@ data/processed/**
 
 # Logs
 *.log
+
+# Temporary private database setup files
+.env.setup-*
+.neon
+node_modules/
+
+# Local paper-bot account and SQLite journals
+data/local/
+app/__pycache__/
